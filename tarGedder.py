@@ -1,5 +1,8 @@
 #!/usr/bin/env python3
-# -*- coding: utf-8 -*-
+## Copyleft, my rights are your wrongs ;) 
+## there is a version that uses a functional approach, with wrappers for expandability, the files are seperated 
+## or you can go thru this single page and go class by class to decypher the logic you want to peice together. 
+## happy hacking boys!
 
 """
 Comprehensive Network and Web Reconnaissance Framework
