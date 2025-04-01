@@ -1,8 +1,5 @@
 #!/usr/bin/env python3
-## Copyleft, my rights are your wrongs ;) 
-## there is a version that uses a functional approach, with wrappers for expandability, the files are seperated 
-## or you can go thru this single page and go class by class to decypher the logic you want to peice together. 
-## happy hacking boys!
+# -*- coding: utf-8 -*-
 
 """
 Comprehensive Network and Web Reconnaissance Framework
@@ -774,8 +771,8 @@ class AggregatedResult:
     """Aggregated results from multiple scanners"""
 
     def __init__(self, target: str):
-        self.target = target
-        self.scan_results = {}
+        self.__target = target
+        self.__scan_results = {}
         self.__smb_info = SMBInfo()
         self.__web_info = {
             "api_endpoints": [],
@@ -2590,6 +2587,7 @@ class ScriptAnalyzer(WebScanner):
         return script_info
     def create_api_endpoint_chart(self, targets: Optional[List[str]] = None) -> Dict:
         """Create a chart showing API endpoints by target"""
+
     if not targets:
         targets = list(self.__metrics['api_endpoints'].keys())
 
@@ -2606,68 +2604,65 @@ class ScriptAnalyzer(WebScanner):
     sorted_targets = [item[0] for item in sorted_items]
     sorted_counts = [item[1] for item in sorted_items]
 
-    # Create bar chart
+        # Create bar chart
 
-def create_vulnerability_summary(self, targets: Optional[List[str]] = None) -> Dict:
-    """Create a summary chart of vulnerabilities by severity across targets"""
-    if not targets:
-        targets = list(self.__metrics['vulnerabilities'].keys())
+    def create_vulnerability_summary(self, targets: Optional[List[str]] = None) -> Dict:
+        """Create a summary chart of vulnerabilities by severity across targets"""
+        if not targets:
+            targets = list(self.__metrics['vulnerabilities'].keys())
 
-    # Collect vulnerability data
-    severity_levels = ['Critical', 'High', 'Medium', 'Low', 'Info']
-    vuln_data = {level: [] for level in severity_levels}
+        # Collect vulnerability data
+        severity_levels = ['Critical', 'High', 'Medium', 'Low', 'Info']
+        vuln_data = {level: [] for level in severity_levels}
 
-    for target in targets:
-        if target in self.__metrics['vulnerabilities']:
-            target_vulns = self.__metrics['vulnerabilities'][target]
+        for target in targets:
+            if target in self.__metrics['vulnerabilities']:
+                target_vulns = self.__metrics['vulnerabilities'][target]
 
-            # Count vulnerabilities by severity for this target
-            for level in severity_levels:
-                count = sum(1 for v in target_vulns if v.get('severity', '').lower() == level.lower())
-                vuln_data[level].append(count)
-        else:
-            # No vulnerability data for this target
-            for level in severity_levels:
-                vuln_data[level].append(0)
+                # Count vulnerabilities by severity for this target
+                for level in severity_levels:
+                    count = sum(1 for v in target_vulns if v.get('severity', '').lower() == level.lower())
+                    vuln_data[level].append(count)
+            else:
+                # No vulnerability data for this target
+                for level in severity_levels:
+                    vuln_data[level].append(0)
 
-    # Create stacked bar chart
-    fig = go.Figure()
+        # Create stacked bar chart
+        fig = go.Figure()
 
 
-    for level in severity_levels:
-        fig.add_trace(go.Bar(
-            name=level,
-            x=targets,
-            y=vuln_data[level],
-            marker_color=colors[level]
-        ))
+        for level in severity_levels:
+            fig.add_trace(go.Bar(
+                name=level,
+                x=targets,
+                y=vuln_data[level],
+                marker_color=colors[level]
+            ))
 
-    fig.update_layout(
-        title="Vulnerabilities by Severity Across Targets",
-        xaxis_title="Target",
-        yaxis_title="Number of Vulnerabilities",
-        barmode='stack',
-        template="plotly_white",
-        legend_title="Severity"
-    )
+        fig.update_layout(
+            title="Vulnerabilities by Severity Across Targets",
+            xaxis_title="Target",
+            yaxis_title="Number of Vulnerabilities",
+            barmode='stack',
+            template="plotly_white",
+            legend_title="Severity"
+        )
 
-    # Save to output directory
-    output_file = os.path.join(self.__output_dir, "vulnerability_summary.html")
-    pio.write_html(fig, file=output_file, auto_open=False)
+        # Save to output directory
+        output_file = os.path.join(self.__output_dir, "vulnerability_summary.html")
+        pio.write_html(fig, file=output_file, auto_open=False)
 
-    # Convert to base64 for embedding in reports
-    img_bytes = fig.to_image(format="png")
-    img_base64 = base64.b64encode(img_bytes).decode('utf-8')
+        # Convert to base64 for embedding in reports
+        img_bytes = fig.to_image(format="png")
+        img_base64 = base64.b64encode(img_bytes).decode('utf-8')
 
-    result = {
-        'html_file': output_file,
-        'base64_image': img_base64,
-        'chart_type': 'stacked_bar',
-        'title': 'Vulnerabilities by Severity Across Targets'
-    }
+        result = {
+            'html_file': output_file,
+            'base64_image': img_base64,
+            'chart_type': 'stacked_bar',
+            'title': 'Vulnerabilities by Severity Across Targets'
+        }
 
-    self.__report_data['vulnerability_summary'] = result
-    return result
-        # Generate graph image
-    img_bytes = fi
-
+        self.__report_data['vulnerability_summary'] = result
+        return result 
