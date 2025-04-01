@@ -2665,4 +2665,4 @@ class ScriptAnalyzer(WebScanner):
         }
 
         self.__report_data['vulnerability_summary'] = result
-        return result 
+        return result

@@ -1,0 +1,43 @@
+# Configuration for Network and Web Reconnaissance Framework
+
+# General Settings
+log_file: "recon.log"
+log_level: "INFO" # DEBUG, INFO, WARNING, ERROR, CRITICAL
+
+# Scanner Settings
+scan_timeout: 120  # Default timeout for scans (in seconds)
+network_interface: "eth0"  # Default network interface
+
+# Tools Required by Scanners
+tools:
+  - nmap
+  - enum4linux
+  - smbmap
+  - crackmapexec
+  - secretsdump.py
+  - dig
+  - traceroute
+  - ssh
+  - python3
+
+# Installation Commands for Tools (if not found)
+tools_install_commands:
+  nmap: "sudo apt-get update && sudo apt-get install -y nmap"
+  enum4linux: "sudo apt-get update && sudo apt-get install -y enum4linux"
+  smbmap: "sudo apt-get update && sudo apt-get install -y smbmap"
+  crackmapexec: "sudo apt-get update && sudo apt-get install -y crackmapexec"
+  secretsdump.py: "sudo apt-get update && sudo apt-get install -y impacket-examples"
+  dig: "sudo apt-get update && sudo apt-get install -y dnsutils"
+  traceroute: "sudo apt-get update && sudo apt-get install -y traceroute"
+  ssh: "sudo apt-get update && sudo apt-get install -y openssh-client"
+  python3: "sudo apt-get update && sudo apt-get install -y python3"
+
+# Web Scanner Settings
+web_scanner:
+  max_depth: 3
+  respect_robots: true
+  rate_limit: 0.5 # requests per second
+  download_scripts: true
+
+# Credential Settings
+credential_file: "credentials.txt" # Path to credentials file (username:password per line)
